@@ -1,0 +1,13 @@
+services:
+  app:
+    platform: ${PLATFORM}
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: cv-app
+    ports:
+      - 4000:4000
+    tty: true
+    volumes:
+      - $PWD/docs:/srv/jekyll
+    # command: jekyll serve --force_polling
