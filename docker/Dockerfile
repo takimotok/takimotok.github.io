@@ -61,9 +61,6 @@ RUN gem install \
   bundler:${BUNDLER_VERSION} \
   jekyll:${JEKYLL_VERSION}
 
-# Expose the default Jekyll port
-EXPOSE ${EXPOSED_PORT}
-
 # set yarn AS v4.x
 # reset symlinks
 RUN corepack disable && corepack enable
@@ -73,6 +70,10 @@ RUN yarn set version stable
 RUN yarn install \
   && yarn cache clean --all
 
+# Expose the default Jekyll port
+EXPOSE ${EXPOSED_PORT}
+
 # Set default command for Jekyll
 # CMD ["jekyll", "serve", "--host", "0.0.0.0"]
+CMD ["/bin/bash"]
 

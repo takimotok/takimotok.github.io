@@ -1,4 +1,5 @@
-# takimotok.github.io
+# kimotok.github.io
+
 my page
 
 ## Environment
@@ -43,7 +44,7 @@ Start local server.
 ```sh
 $ bundle exec jekyll build
 
-$ bundle exec jekyll serve -P 4000 --force_polling
+$ bundle exec jekyll serve --livereload
 ```
 
 Access to `http://localhost:4000/`.
