@@ -17,6 +17,8 @@ jekyll 4.3.4
 
 ## Usage
 
+Before executing these commands below, see `command` section in `compose.yml`.
+
 Set `PLATFORM` to your CPU architecture.  
 (e.g.) `linux/arm64`
 

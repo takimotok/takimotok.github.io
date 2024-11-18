@@ -13,9 +13,10 @@ services:
       - frontend
     ports:
       - 4000:4000
+      - 35729:35729
     command: >
       bash -c "bundle install &&
-      bundle exec jekyll serve --host 0.0.0.0 --livereload"
+      bundle exec jekyll serve --host 0.0.0.0 --incremental --livereload"
 networks:
   frontend:
     driver: bridge

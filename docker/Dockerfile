@@ -33,7 +33,8 @@ ENV LANG=ja_JP.UTF-8
 ENV TZ=Asia/Tokyo
 ENV JEKYLL_VERSION=4.3.4
 ENV BUNDLER_VERSION=2.5.11
-ENV EXPOSED_PORT=4000
+ENV EXPOSED_PORT_DEFAULT=4000
+ENV EXPOSED_PORT_LIVERELOAD=35729
 
 # Set working directory
 WORKDIR ${WORK_DIR}
@@ -70,8 +71,8 @@ RUN yarn set version stable
 RUN yarn install \
   && yarn cache clean --all
 
-# Expose the default Jekyll port
-EXPOSE ${EXPOSED_PORT}
+# Expose the Jekyll ports
+EXPOSE ${EXPOSED_PORT_DEFAULT} ${EXPOSED_PORT_LIVERELOAD}
 
 # Set default command for Jekyll
 # CMD ["jekyll", "serve", "--host", "0.0.0.0"]
