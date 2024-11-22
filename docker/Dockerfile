@@ -1,4 +1,7 @@
-FROM node:22-bookworm-slim AS node
+# -----
+# base image
+# -----
+FROM node:22-bookworm-slim AS base
 
 ENV HOME=/home/node
 WORKDIR ${HOME}
@@ -15,66 +18,68 @@ ENV PATH=${HOME}/.npm-global/bin:$PATH
 RUN npm i --unsafe-perm --allow-root -g npm@latest
 
 # -----
-# installed dependencies image
+# install image
 #
+# install dependencies into temp directory
 # this will cache them and speed up future builds
 # -----
-FROM ruby:3.3.6-slim-bullseye
+FROM ubuntu:noble-20240605 AS install
 
 # get node.js
-COPY --from=node /usr/local/include/ /usr/local/include/
-COPY --from=node /usr/local/lib/ /usr/local/lib/
-COPY --from=node /usr/local/bin/ /usr/local/bin/
+COPY --from=base /usr/local/include/ /usr/local/include/
+COPY --from=base /usr/local/lib/ /usr/local/lib/
+COPY --from=base /usr/local/bin/ /usr/local/bin/
 
-# ENV NODE_ENV=development
-ENV WORK_DIR=/srv/jekyll
+ENV NODE_ENV=development
+ENV WORK_DIR=/app
 ENV PATH=${WORK_DIR}/node_modules/.bin:$PATH
 ENV LANG=ja_JP.UTF-8
 ENV TZ=Asia/Tokyo
-ENV JEKYLL_VERSION=4.3.4
-ENV BUNDLER_VERSION=2.5.11
-ENV EXPOSED_PORT_DEFAULT=4000
-ENV EXPOSED_PORT_LIVERELOAD=35729
 
-# Set working directory
 WORKDIR ${WORK_DIR}
 
 # Packages:
 #   - curl: for checking APIs in local dev. env.
 #   - git: for watch mode in Jest
 #   - tini: avoid running node.js process as PID 1
-#   - libssl-dev: avoid err.: ‘writev’ was not declared in this scope; did you mean ‘write’?
-#   - libc6-dev:  avoid err.: ‘writev’ was not declared in this scope; did you mean ‘write’?
 #   - vim: for editing inside container
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
     curl \
     git \
-    tini \
-    libssl-dev \
-    libc6-dev \
-    build-essential \
+    # tini \
     vim \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Jekyll
-RUN gem install \
-  bundler:${BUNDLER_VERSION} \
-  jekyll:${JEKYLL_VERSION}
-
-# set yarn AS v4.x
 # reset symlinks
 RUN corepack disable && corepack enable
 
+# create node user and group, then create app dir
+RUN groupadd --gid 2000 node \
+    && useradd --uid 2000 --gid node --shell /bin/bash --create-home node \
+    && mkdir -p ${WORK_DIR} \
+    && chown -R node:node ${WORK_DIR}
+
+USER node
+
+# -----
+# prod. image
+# -----
+FROM install AS release
+COPY --chown=node:node ./package*.json ./yarn*.lock ${WORK_DIR}/
+ENV NODE_ENV=production
+
+# default port for node.js: 19006
+# test ports for debugging: 19001, 19002
+ENV PORT=4321
+EXPOSE ${PORT}
+
+# set yarn v4.x
 RUN yarn set version stable
 
-RUN yarn install \
-  && yarn cache clean --all
+# RUN yarn install \
+#   && yarn cache clean --all
 
-# Expose the Jekyll ports
-EXPOSE ${EXPOSED_PORT_DEFAULT} ${EXPOSED_PORT_LIVERELOAD}
-
-# Set default command for Jekyll
-# CMD ["jekyll", "serve", "--host", "0.0.0.0"]
-CMD ["/bin/bash"]
+# ENTRYPOINT ["/usr/bin/tini", "--"]
 
