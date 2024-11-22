@@ -1,0 +1,12 @@
+services:
+  app:
+    platform: ${PLATFORM}
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: app
+    tty: true
+    volumes:
+      - $PWD:/app
+    ports:
+      - 4321:4321

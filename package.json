@@ -1,0 +1,21 @@
+{
+  "name": "takimotok's resume",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "yarn@4.5.2",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "0.9.4",
+    "astro": "4.16.13",
+    "typescript": "5.6.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4"
+  }
+}
