@@ -1,52 +1,54 @@
-# kimotok.github.io
-
-my page
-
-## Environment
-
-- ruby: 3.3.6
-- node: 22.11.0
-- yarn: 4.5.1
-- jekyll: 4.3.4
+# Astro Starter Kit: Basics
 
 ```sh
-$ bundle exec jekyll -v
-
-jekyll 4.3.4
+npm create astro@latest -- --template basics
 ```
 
-## Usage
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
-Before executing these commands below, see `command` section in `compose.yml`.
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-Set `PLATFORM` to your CPU architecture.  
-(e.g.) `linux/arm64`
+![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
 
-```sh
-$ cp .env.local .env
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-And then, install ruby and node packages.
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-```sh
-# install ruby packages
-$ bundle install
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-# install node packages
-$ yarn set version stable
+Any static assets, like images, can be placed in the `public/` directory.
 
-$ yarn -v
-4.5.1
+## 🧞 Commands
 
-$ yarn install
-```
+All commands are run from the root of the project, from a terminal:
 
-Start local server.
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-```sh
-$ bundle exec jekyll build
+## 👀 Want to learn more?
 
-$ bundle exec jekyll serve --livereload
-```
-
-Access to `http://localhost:4000/`.
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
