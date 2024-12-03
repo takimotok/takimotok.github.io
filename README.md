@@ -15,7 +15,7 @@ This resume uses [Astro](https://astro.build/).
 
 Here's the folders and files:
 
-```text
+```txt
 /
 ├── public/
 │   └── favicon.svg
