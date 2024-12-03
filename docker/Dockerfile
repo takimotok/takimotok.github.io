@@ -41,13 +41,11 @@ WORKDIR ${WORK_DIR}
 # Packages:
 #   - curl: for checking APIs in local dev. env.
 #   - git: for watch mode in Jest
-#   - tini: avoid running node.js process as PID 1
 #   - vim: for editing inside container
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     curl \
     git \
-    # tini \
     vim \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -77,9 +75,6 @@ EXPOSE ${PORT}
 
 # set yarn v4.x
 RUN yarn set version stable
-
-# RUN yarn install \
-#   && yarn cache clean --all
 
 # ENTRYPOINT ["/usr/bin/tini", "--"]
 
