@@ -4,12 +4,21 @@
   "version": "0.0.1",
   "packageManager": "yarn@4.5.2",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "astro dev --host 0.0.0.0",
+    "check": "biome check ./src",
+    "build": "astro check && yarn check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.0.2"
+    "@astrojs/check": "0.9.4",
+    "astro": "5.0.2",
+    "typescript": "5.7.2"
+  },
+  "devDependencies": {
+    "@astrojs/language-server": "2.15.4",
+    "@biomejs/biome": "1.9.4",
+    "prettier": "3.4.1",
+    "prettier-plugin-astro": "0.14.1"
   }
 }
