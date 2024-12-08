@@ -81,5 +81,5 @@ RUN yarn set version stable
 RUN yarn install \
   && yarn cache clean --all
 
-ENTRYPOINT ["/usr/bin/tini", "--"]
+# ENTRYPOINT ["/usr/bin/tini", "--"]
 
