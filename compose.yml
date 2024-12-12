@@ -4,9 +4,15 @@ services:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
+      args:
+        - WORK_DIR=${WORK_DIR}
+        - PORT=${PORT}
     container_name: app
     tty: true
     volumes:
-      - $PWD:/app
+      - ./:/${WORK_DIR}:delegated
+      - /${WORK_DIR}/node_modules
     ports:
-      - 4321:4321
+      - ${PORT}:${PORT}
+    environment:
+      - NODE_ENV=${NODE_ENV}
