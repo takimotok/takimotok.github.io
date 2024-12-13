@@ -4,9 +4,18 @@ services:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
+      args:
+        - WORK_DIR=${WORK_DIR}
+        - PORT=${PORT}
+        - NODE_ENV=${NODE_ENV}
     container_name: app
     tty: true
     volumes:
-      - $PWD:/app
+      - ./:/${WORK_DIR}:delegated
+      - ${WORK_DIR}/node_modules
+      - ${WORK_DIR}/.yarn
     ports:
-      - 4321:4321
+      - ${PORT}:${PORT}
+    environment:
+      - NODE_ENV=${NODE_ENV}
+

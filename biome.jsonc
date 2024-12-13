@@ -23,6 +23,7 @@
     ]
   },
   "javascript": {
+    "globals": ["Astro"],
     "parser": {
       "unsafeParameterDecoratorsEnabled": true
     },

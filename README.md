@@ -1,54 +1,127 @@
-# Astro Starter Kit: Basics
+---
+aliases: ["Kengo's Resume"]
+tags: ['resume', '']
+created_at: 2024-12-03
+updated_at:
+---
 
-```sh
-npm create astro@latest -- --template basics
-```
+# 📓 Kengo's Resume
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+Kengo's Resume.
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+This resume uses [Astro](https://astro.build/).
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+Here's the folders and files:
+
+<details>
+<summary>Click to expand</summary>
+
+```txt
+./
+├── .astro
+│   ├── collections/
+│   ├── content-assets.mjs
+│   ├── content-modules.mjs
+│   ├── data-store.json
+│   ├── settings.json
+│   └── types.d.ts
+├── .github
+│   └── workflows/
+├── .vscode
+│   ├── extensions.json
+│   └── launch.json
+├── docker
+│   └── Dockerfile
+├── public
+│   └── favicon.svg
+├── src
+│   ├── assets/
+│   ├── components/
+│   ├── layouts/
+│   └── pages/
+├── .dockerignore
+├── .env
+├── .env.example
+├── .env.local
+├── .gitignore
+├── .mise.toml
+├── .nojekyll
+├── .prettierignore
+├── .prettierrc.json
+├── .yarnrc.yml
+├── LICENSE
+├── README.md
+├── astro.config.mjs
+├── biome.jsonc
+├── compose.yml
+├── package.json
+├── tsconfig.json
+└── yarn.lock
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+</details>
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+##  Setup local dev. env
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Prerequisites
 
-## 🧞 Commands
+`node_modules` dir. is isolated between host machine (e.g.: macOS) and docker container.  
+Make sure set the same versions of `yarn` and `node` as the files below says.
 
-All commands are run from the root of the project, from a terminal:
+cf.)  
+- [package.json](./package.json)
+- [Dockerfile](./docker/Dockerfile)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```sh
+# on host machine (e.g.: macOS)
+❯ yarn -v
+4.5.2
 
-## 👀 Want to learn more?
+❯ node -v
+v22.11.0
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Setup
+
+```sh
+# on host machine
+
+$ git clone git@github.com:takimotok/takimotok.github.io.git
+
+$ cd takimotok.github.io.git
+
+$ docker compose down -v
+
+$ docker compose build --no-cache
+
+$ docker compose up -d
+
+# start local server
+$ docker compose exec app /bin/bash yarn dev
+```
+
+In case make IDE read binaries from `node_modules`:
+
+```sh
+# on host machine
+
+$ rm -rf node_modules .yarn
+
+$ yarn install
+```
+
+##  Commands
+
+For local dev. env., we can run the commands below from a terminal:
+
+| Command                      | Action                                             |
+| :--------------------------- | :------------------------------------------------- |
+| `yarn install`               | Installs dependencies                              |
+| `yarn run dev`               | Starts local dev server at `localhost:4321`        |
+| `yarn run build`             | Build your production site to `./dist/`            |
+| `yarn run preview`           | Preview your build locally, before deploying       |
+| `yarn run astro ...`         | Run CLI commands like `astro add`, `astro check`   |
+| `yarn run astro -- --help`   | Get help using the Astro CLI                       |
+
