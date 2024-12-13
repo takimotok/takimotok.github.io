@@ -1,10 +1,3 @@
----
-aliases: ["Kengo's Resume"]
-tags: ['resume', '']
-created_at: 2024-12-03
-updated_at:
----
-
 # 📓 Kengo's Resume
 
 Kengo's Resume.
@@ -63,7 +56,7 @@ Here's the folders and files:
 
 </details>
 
-##  Setup local dev. env
+## 🔧 Setup local dev. env
 
 ### Prerequisites
 
@@ -112,7 +105,7 @@ $ rm -rf node_modules .yarn
 $ yarn install
 ```
 
-##  Commands
+## 💻 Commands
 
 For local dev. env., we can run the commands below from a terminal:
 
