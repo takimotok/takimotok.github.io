@@ -7,12 +7,15 @@ services:
       args:
         - WORK_DIR=${WORK_DIR}
         - PORT=${PORT}
+        - NODE_ENV=${NODE_ENV}
     container_name: app
     tty: true
     volumes:
       - ./:/${WORK_DIR}:delegated
-      - /${WORK_DIR}/node_modules
+      - ${WORK_DIR}/node_modules
+      - ${WORK_DIR}/.yarn
     ports:
       - ${PORT}:${PORT}
     environment:
       - NODE_ENV=${NODE_ENV}
+
