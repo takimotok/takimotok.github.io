@@ -63,6 +63,55 @@ Here's the folders and files:
 
 </details>
 
+##  Setup local dev. env
+
+### Prerequisites
+
+`node_modules` dir. is isolated between host machine (e.g.: macOS) and docker container.  
+Make sure set the same versions of `yarn` and `node` as the files below says.
+
+cf.)  
+- [package.json](./package.json)
+- [Dockerfile](./docker/Dockerfile)
+
+```sh
+# on host machine (e.g.: macOS)
+❯ yarn -v
+4.5.2
+
+❯ node -v
+v22.11.0
+```
+
+### Setup
+
+```sh
+# on host machine
+
+$ git clone git@github.com:takimotok/takimotok.github.io.git
+
+$ cd takimotok.github.io.git
+
+$ docker compose down -v
+
+$ docker compose build --no-cache
+
+$ docker compose up -d
+
+# start local server
+$ docker compose exec app /bin/bash yarn dev
+```
+
+In case make IDE read binaries from `node_modules`:
+
+```sh
+# on host machine
+
+$ rm -rf node_modules .yarn
+
+$ yarn install
+```
+
 ##  Commands
 
 For local dev. env., we can run the commands below from a terminal:
