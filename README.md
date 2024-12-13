@@ -2,6 +2,8 @@
 
 Kengo's Resume.
 
+- cf.) [Kengo's Resume](https://takimotok.github.io/takimotok.github.io)
+
 ## 🚀 Project Structure
 
 This resume uses [Astro](https://astro.build/).
