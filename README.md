@@ -65,7 +65,8 @@ Here's the folders and files:
 `node_modules` dir. is isolated between host machine (e.g.: macOS) and docker container.  
 Make sure set the same versions of `yarn` and `node` as the files below says.
 
-cf.)  
+cf.)
+
 - [package.json](./package.json)
 - [Dockerfile](./docker/Dockerfile)
 
@@ -111,12 +112,11 @@ $ yarn install
 
 For local dev. env., we can run the commands below from a terminal:
 
-| Command                      | Action                                             |
-| :--------------------------- | :------------------------------------------------- |
-| `yarn install`               | Installs dependencies                              |
-| `yarn run dev`               | Starts local dev server at `localhost:4321`        |
-| `yarn run build`             | Build your production site to `./dist/`            |
-| `yarn run preview`           | Preview your build locally, before deploying       |
-| `yarn run astro ...`         | Run CLI commands like `astro add`, `astro check`   |
-| `yarn run astro -- --help`   | Get help using the Astro CLI                       |
-
+| Command                    | Action                                           |
+| :------------------------- | :----------------------------------------------- |
+| `yarn install`             | Installs dependencies                            |
+| `yarn run dev`             | Starts local dev server at `localhost:4321`      |
+| `yarn run build`           | Build your production site to `./dist/`          |
+| `yarn run preview`         | Preview your build locally, before deploying     |
+| `yarn run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `yarn run astro -- --help` | Get help using the Astro CLI                     |
