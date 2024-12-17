@@ -1,13 +1,8 @@
----
-aliases: ["Kengo's Resume"]
-tags: ['resume', '']
-created_at: 2024-12-03
-updated_at:
----
-
 # 📓 Kengo's Resume
 
 Kengo's Resume.
+
+- cf.) [Kengo's Resume](https://takimotok.github.io/takimotok.github.io)
 
 ## 🚀 Project Structure
 
@@ -63,14 +58,15 @@ Here's the folders and files:
 
 </details>
 
-##  Setup local dev. env
+## 🔧 Setup local dev. env
 
 ### Prerequisites
 
 `node_modules` dir. is isolated between host machine (e.g.: macOS) and docker container.  
 Make sure set the same versions of `yarn` and `node` as the files below says.
 
-cf.)  
+cf.)
+
 - [package.json](./package.json)
 - [Dockerfile](./docker/Dockerfile)
 
@@ -112,16 +108,15 @@ $ rm -rf node_modules .yarn
 $ yarn install
 ```
 
-##  Commands
+## 💻 Commands
 
 For local dev. env., we can run the commands below from a terminal:
 
-| Command                      | Action                                             |
-| :--------------------------- | :------------------------------------------------- |
-| `yarn install`               | Installs dependencies                              |
-| `yarn run dev`               | Starts local dev server at `localhost:4321`        |
-| `yarn run build`             | Build your production site to `./dist/`            |
-| `yarn run preview`           | Preview your build locally, before deploying       |
-| `yarn run astro ...`         | Run CLI commands like `astro add`, `astro check`   |
-| `yarn run astro -- --help`   | Get help using the Astro CLI                       |
-
+| Command                    | Action                                           |
+| :------------------------- | :----------------------------------------------- |
+| `yarn install`             | Installs dependencies                            |
+| `yarn run dev`             | Starts local dev server at `localhost:4321`      |
+| `yarn run build`           | Build your production site to `./dist/`          |
+| `yarn run preview`         | Preview your build locally, before deploying     |
+| `yarn run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `yarn run astro -- --help` | Get help using the Astro CLI                     |
