@@ -8,6 +8,15 @@ const tailwindConfig: Config = {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   darkMode: 'class',
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '2rem', // 32 (= 16 * 2)px padding on both sides by default
+        sm: '3rem', // 48 px
+        md: '4rem', // 64 px
+        lg: '5rem', // 80 px
+      },
+    },
     extend: {
       lineHeight: {
         11: '2.75rem',
