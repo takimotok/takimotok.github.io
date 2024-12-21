@@ -5,10 +5,10 @@ const descriptions: string[] = SITE_METADATA.description.split('\n')
 
 <div id="container">
   <main>
-    <section id="author" class="my-8 text-5xl text-gray-600 sm:text-6xl md:text-7xl">
+    <section id="author" class="my-8 text-5xl text-gray-500 sm:text-6xl md:text-7xl">
       {SITE_METADATA.author}
     </section>
-    <section id="description" class="text-2xl text-gray-500">
+    <section id="description" class="text-2xl text-gray-500 sm:text-3xl md:text-4xl">
       {
         descriptions.map((line: string, index: number) => (
           <Fragment key={index}>
