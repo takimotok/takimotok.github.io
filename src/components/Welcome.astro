@@ -10,19 +10,15 @@ const { name, shortBio } = author.data
 const formattedShortBio: string[] = shortBio.split('\n')
 ---
 
-<div id="container">
-  <main>
-    <section id="author" class="my-8 text-5xl text-gray-500 sm:text-6xl md:text-7xl">
-      {name}
-    </section>
-    <section id="description" class="text-2xl text-gray-500 sm:text-3xl md:text-4xl">
-      {
-        formattedShortBio.map((line: string, index: number) => (
-          <Fragment key={index}>
-            <p>{line}</p>
-          </Fragment>
-        ))
-      }
-    </section>
-  </main>
-</div>
+<section id="author" class="my-8 text-5xl text-gray-500 sm:text-6xl md:text-7xl">
+  {name}
+</section>
+<section id="description" class="text-2xl text-gray-500 sm:text-3xl md:text-4xl">
+  {
+    formattedShortBio.map((line: string, index: number) => (
+      <Fragment key={index}>
+        <p>{line}</p>
+      </Fragment>
+    ))
+  }
+</section>

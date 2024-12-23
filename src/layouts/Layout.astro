@@ -8,8 +8,10 @@ import Head from '../components/Head.astro'
   <Head />
   <body>
     <div class="container mx-auto">
-      <slot />
+      <main>
+        <slot />
+      </main>
+      <Footer />
     </div>
-    <Footer />
   </body>
 </html>
