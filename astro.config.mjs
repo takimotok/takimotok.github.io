@@ -12,6 +12,6 @@ import robotsTxt from 'astro-robots-txt'
 // https://astro.build/config
 export default defineConfig({
   prefetch: true,
-  site: SITE_METADATA.siteUrl,
+  site: SITE_METADATA.site.url,
   integrations: [mdx(), sitemap(), tailwind(), solidJs(), metaTags(), robotsTxt()],
 })
