@@ -1,7 +1,94 @@
+---
+import '@/styles/global.css'
+import { ClientRouter } from 'astro:transitions'
+import { SITE_METADATA } from '@/consts'
+import '@fontsource/onest'
+import { getImage } from 'astro:assets'
+import { getEntry } from 'astro:content'
+import Favicon from '@/assets/favicon.svg'
+import OgImage from '@/assets/og-image.png'
+import { SEO } from 'astro-seo'
+
+interface Props {
+  title: string
+  description: string
+  robots?: string // default to SITE_METADATA.robots
+  titleTemplate?: string
+}
+
+const { title, description, robots = SITE_METADATA.robots, titleTemplate } = Astro.props
+
+// Optimize open graph image
+const openGraphImage = await getImage({
+  src: OgImage,
+  width: 1200,
+  height: 630,
+})
+
+// The default author is the site creator
+const creator = await getEntry('authors', 'default')
+const twitterCreator = creator?.data.twitter
+---
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="generator" content={Astro.generator} />
-  <title>Astro Basics</title>
+  <SEO
+    title={title}
+    {titleTemplate}
+    titleDefault={SITE_METADATA.title}
+    description={description}
+    nofollow={robots.includes('nofollow')}
+    noindex={robots.includes('noindex')}
+    canonical={Astro.url.href}
+    charset="utf-8"
+    extend={{
+      meta: [
+        {
+          name: 'theme-color',
+          content: '#fff',
+          media: '(prefers-color-scheme: light)',
+        },
+        {
+          name: 'theme-color',
+          content: '#000',
+          media: '(prefers-color-scheme: dark)',
+        },
+        { name: 'viewport', content: 'width=device-width,initial-scale=1' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: Favicon.src },
+        { rel: 'apple-touch-icon', sizes: '76x76', href: Favicon.src },
+        { rel: 'alternate', type: 'application/rss+xml', href: '/rss.xml' },
+      ],
+    }}
+    twitter={{
+      ...((twitterCreator && {
+        card: 'summary_large_image',
+        creator: twitterCreator.replace('https://twitter.com/', '@'),
+        title,
+        description,
+        image: openGraphImage.src,
+      }) ||
+        {}),
+    }}
+    openGraph={{
+      basic: {
+        type: 'website',
+        url: Astro.url.href,
+        title: title || SITE_METADATA.title,
+        image: openGraphImage.src,
+      },
+      image: {
+        url: openGraphImage.src,
+        type: `image/${openGraphImage.options.format}`,
+        width: openGraphImage.options.width,
+        height: openGraphImage.options.height,
+        alt: title,
+      },
+      optional: {
+        locale: SITE_METADATA.language,
+        description,
+      },
+    }}
+  />
+  <ClientRouter />
 </head>
