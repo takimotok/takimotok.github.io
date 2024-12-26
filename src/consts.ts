@@ -1,5 +1,5 @@
 /**
- * SITE_METADATA: used across the site
+ * SITE_METADATA
  */
 export const SITE_METADATA = {
   url: 'https://takimotok.github.io/takimotok.github.io',
@@ -9,3 +9,11 @@ export const SITE_METADATA = {
   language: 'en_US',
   robots: 'index, follow', // Options: index, noindex, follow, nofollow
 }
+
+/**
+ * Navigation items
+ */
+export const NAVIGATION = [
+  { href: '/', title: 'Home' },
+  { href: '/resume', title: 'Resume' },
+] as const
