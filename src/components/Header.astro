@@ -1,10 +1,11 @@
 ---
-import type { NavItem } from '@/types/consts'
 import { NAVIGATION, SITE_METADATA } from '@/consts'
+import MobileNav from '@/solid/MobileNav.tsx'
+import type { NavItem } from '@/types/consts'
 import HeaderLink from './HeaderLink.astro'
 import Logo from './Logo.astro'
 
-const NavLins: NavItem[] = NAVIGATION.filter((nav) => nav.href !== '/')
+const NavLinks: NavItem[] = NAVIGATION.filter(nav => nav.href !== '/')
 ---
 
 <header class="flex items-center justify-between py-10">
@@ -15,11 +16,14 @@ const NavLins: NavItem[] = NAVIGATION.filter((nav) => nav.href !== '/')
   </div>
   <div class="flex items-center space-x-4 leading-5 sm:space-x-6">
     {
-      NavLins.map((link) => (
+      NavLinks.map((link) => (
         <HeaderLink href={link.href} class="hidden font-medium text-gray-900 dark:text-gray-100 sm:block">
           {link.title}
         </HeaderLink>
       ))
     }
+    <div class="flex gap-4">
+      <MobileNav client:only="solid-js" />
+    </div>
   </div>
 </header>
