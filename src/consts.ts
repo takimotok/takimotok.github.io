@@ -1,7 +1,9 @@
+import type { NavItem, SiteMetadata } from '@/types/consts'
+
 /**
  * SITE_METADATA
  */
-export const SITE_METADATA = {
+export const SITE_METADATA: SiteMetadata = {
   url: 'https://takimotok.github.io/takimotok.github.io',
   repo: 'https://github.com/takimotok/takimotok.github.io',
   title: "Kengo's Resume",
@@ -13,7 +15,7 @@ export const SITE_METADATA = {
 /**
  * Navigation items
  */
-export const NAVIGATION = [
+export const NAVIGATION: NavItem[] = [
   { href: '/', title: 'Home' },
   { href: '/resume', title: 'Resume' },
 ] as const
