@@ -1,0 +1,12 @@
+---
+import { SITE_METADATA } from '@/consts'
+import Logo from './Logo.astro'
+---
+
+<header class="flex items-center justify-between py-10">
+  <div class="mr-3 w-20 md:w-40">
+    <a href="/" aria-label={SITE_METADATA.title}>
+      <Logo class="w-10 sm:w-20" />
+    </a>
+  </div>
+</header>
