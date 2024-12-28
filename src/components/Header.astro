@@ -5,13 +5,13 @@ import type { NavItem } from '@/types/consts'
 import HeaderLink from './HeaderLink.astro'
 import Logo from './Logo.astro'
 
-const NavLinks: NavItem[] = NAVIGATION.filter(nav => nav.href !== '/')
+const NavLinks: NavItem[] = NAVIGATION.filter((nav) => nav.href !== '/')
 ---
 
 <header class="flex items-center justify-between py-10">
-  <div class="mr-3 w-20 md:w-40">
+  <div class="mr-3 w-10 sm:w-20 md:w-40">
     <a href="/" aria-label={SITE_METADATA.title}>
-      <Logo class="w-10 sm:w-20" />
+      <Logo />
     </a>
   </div>
   <div class="flex items-center space-x-4 leading-5 sm:space-x-6">
