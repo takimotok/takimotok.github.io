@@ -6,8 +6,3 @@ export interface SiteMetadata {
   language: string
   robots: string
 }
-
-export interface NavItem {
-  href: string
-  title: string
-}

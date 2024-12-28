@@ -1,4 +1,5 @@
-import type { NavItem, SiteMetadata } from '@/types/consts'
+import type { SiteMetadata } from '@/types/consts'
+import type { NavItem } from '@/types/nav'
 
 /**
  * SITE_METADATA
