@@ -1,0 +1,15 @@
+---
+import Logo from '../Logo.astro'
+
+interface Props {
+  siteTitle: string
+}
+
+const { siteTitle } = Astro.props
+---
+
+<div class="mr-3 w-10 sm:w-20">
+  <a href="/" aria-label={siteTitle}>
+    <Logo />
+  </a>
+</div>

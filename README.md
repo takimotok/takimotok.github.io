@@ -90,22 +90,16 @@ $ cd takimotok.github.io.git
 
 $ docker compose down -v
 
+$ rm -rf node_modules .yarn
+
+$ yarn install
+
 $ docker compose build --no-cache
 
 $ docker compose up -d
 
 # start local server
 $ docker compose exec app /bin/bash yarn dev
-```
-
-In case make IDE read binaries from `node_modules`:
-
-```sh
-# on host machine
-
-$ rm -rf node_modules .yarn
-
-$ yarn install
 ```
 
 ## 💻 Commands

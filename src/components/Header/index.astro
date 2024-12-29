@@ -1,0 +1,18 @@
+---
+import { NAVIGATION, SITE_METADATA } from '@/consts'
+import MobileNav from '@/solid/MobileNav'
+import type { NavItem } from '@/types/nav'
+import DesktopNav from './DesktopNav.astro'
+import LogoLink from './LogoLink.astro'
+
+const navLinks: NavItem[] = NAVIGATION.filter(nav => nav.href !== '/')
+---
+
+<header class="flex items-center justify-between py-10">
+  <LogoLink siteTitle={SITE_METADATA.title} />
+
+  <div class="flex items-center space-x-4 leading-5 sm:space-x-6">
+    <DesktopNav links={navLinks} />
+    <MobileNav client:only="solid-js" />
+  </div>
+</header>

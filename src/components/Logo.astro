@@ -1,0 +1,12 @@
+---
+import { Image } from 'astro:assets'
+import LogoImage from '@/assets/logo.svg'
+import { SITE_METADATA } from '@/consts'
+
+interface Props {
+  class?: string
+}
+const { class: className } = Astro.props
+---
+
+<Image src={LogoImage} alt={SITE_METADATA.title} class={`h-auto ${className}`} loading="eager" />

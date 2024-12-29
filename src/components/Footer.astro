@@ -1,0 +1,20 @@
+---
+import { SITE_METADATA } from '@/consts'
+
+import Link from './Link.astro'
+---
+
+<footer>
+  <div class="mt-16 flex flex-col items-center">
+    <div class="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400 sm:text-lg">
+      <div>{`© ${new Date().getFullYear()}`}</div>
+      <Link href="/">{SITE_METADATA.title}</Link>
+    </div>
+    <div class="mb-8 text-sm text-gray-500 dark:text-gray-400 sm:text-lg">
+      <Link href={SITE_METADATA.repo}>
+        {` View the source code on `}
+        <span class="underline">GitHub.</span>
+      </Link>
+    </div>
+  </div>
+</footer>
