@@ -1,16 +1,13 @@
 import HamburgerMenuImage from '@/assets/hamburger-menu.svg'
-import { type Component, createEffect, createSignal } from 'solid-js'
+import { useBodyScrool } from '@/hooks/useBodyScroll'
+import { type Component, createSignal } from 'solid-js'
 import { MenuButton } from './MenuButton'
 import { MenuOverlay } from './MenuOverlay'
 
 const MobileNav: Component = () => {
   const [isMenuOpen, setIsMenuOpen] = createSignal(false)
 
-  // @TODO: learn more about reactive programming: side effect
-  // Handle body scroll lock
-  createEffect(() => {
-    document.body.style.overflow = isMenuOpen() ? 'hidden' : ''
-  })
+  useBodyScrool(isMenuOpen)
 
   return (
     <div class='block sm:hidden'>
