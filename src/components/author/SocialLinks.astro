@@ -1,0 +1,17 @@
+---
+import SocialIcon from '@/components/social-icons/index.astro'
+
+interface Props {
+  github?: string
+  twitter?: string
+  blog?: string
+}
+
+const { github, twitter, blog } = Astro.props
+---
+
+<div class="flex space-x-3 pt-6">
+  {github && <SocialIcon kind="github" href={github} />}
+  {twitter && <SocialIcon kind="twitter" href={twitter} />}
+  {blog && <SocialIcon kind="blog" href={blog} />}
+</div>

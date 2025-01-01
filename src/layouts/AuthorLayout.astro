@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+import ContentSection from '@/components/author/ContentSection.astro'
+import ProfileSection from '@/components/author/ProfileSection.astro'
+import TitleSection from '@/components/author/TitleSection.astro'
+import Layout from './Layout.astro'
+
+interface Props {
+  content: CollectionEntry<'authors'>['data']
+}
+
+const { name, shortBio } = Astro.props.content
+---
+
+<Layout title={name} description={shortBio}>
+  <div class="divide-y divide-gray-200 dark:divide-gray-700">
+    <TitleSection />
+
+    <div class="flex flex-col xl:flex-row xl:gap-x-8">
+      <ProfileSection author={Astro.props.content} />
+      <ContentSection>
+        <slot />
+      </ContentSection>
+    </div>
+  </div>
+</Layout>
