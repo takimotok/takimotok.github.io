@@ -15,4 +15,15 @@ const authors = defineCollection({
   }),
 })
 
-export const collections = { authors }
+const resumes = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    shortBio: z.string(),
+    occupation: z.string().optional(),
+    company: z.string().optional(),
+    site: z.string().url().optional(),
+  }),
+})
+
+export const collections = { authors, resumes }

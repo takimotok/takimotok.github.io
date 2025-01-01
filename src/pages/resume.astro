@@ -1,15 +1,16 @@
 ---
 import { getEntry } from 'astro:content'
-import AuthorLayout from '@/layouts/AuthorLayout.astro'
+import type { CollectionEntry } from 'astro:content'
+import ResumeLayout from '@/layouts/ResumeLayout.astro'
 
-const author = await getEntry('authors', 'default')
-if (!author) {
-  throw new Error('Author not found')
+const resume = await getEntry('resumes', 'default')
+if (!resume) {
+  throw new Error('Resume not found')
 }
 
-const { Content } = await author.render()
+const { Content } = await resume.render()
 ---
 
-<AuthorLayout content={author.data}>
+<ResumeLayout content={resume.data}>
   <Content />
-</AuthorLayout>
+</ResumeLayout>
