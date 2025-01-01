@@ -15,7 +15,7 @@ const { name, shortBio } = Astro.props.content
 
 <Layout title={name} description={shortBio}>
   <div class="divide-y divide-gray-200 dark:divide-gray-700">
-    <TitleSection />
+    <TitleSection title="About" />
 
     <div class="flex flex-col xl:flex-row xl:gap-x-8">
       <ProfileSection author={Astro.props.content} />
