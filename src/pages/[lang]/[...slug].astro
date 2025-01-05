@@ -1,0 +1,55 @@
+---
+import { getCollection, getEntry, render } from 'astro:content'
+import ResumeLayout from '@/layouts/ResumeLayout.astro'
+
+interface Resume {
+  name: string
+  kana?: string
+  shortBio: string
+  birthDate?: string
+  address?: string
+  lastEducation?: string
+  occupation?: string
+  company?: string
+  site?: string
+}
+
+interface Path {
+  params: {
+    lang: string
+    slug: string
+  }
+  props: Resume
+}
+
+// only use for resume pages currently
+export async function getStaticPaths() {
+  const resumes = await getCollection('resumes')
+
+  const paths = resumes.map(resume => {
+    return {
+      params: {
+        lang,
+        slug: 'resume',
+      },
+      props: resume,
+    }
+  })
+
+  return paths
+}
+
+const resume = await getEntry('resumes', 'default')
+if (!resume) {
+  throw new Error('Resume not found')
+}
+
+const { lang } = Astro.params
+const page = Astro.props
+
+const { Content } = await render(page)
+---
+
+<ResumeLayout content={page.data}>
+  <Content />
+</ResumeLayout>
