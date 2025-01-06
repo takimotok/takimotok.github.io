@@ -13,5 +13,16 @@ import robotsTxt from 'astro-robots-txt'
 export default defineConfig({
   prefetch: true,
   site: SITE_METADATA.url,
+  i18n: {
+    locales: ['en', 'ja'],
+    defaultLocale: 'en',
+    fallback: {
+      ja: 'en',
+    },
+    routing: {
+      prefixDefaultLocale: false,
+      fallbackType: 'rewrite',
+    },
+  },
   integrations: [mdx(), sitemap(), tailwind(), solidJs(), metaTags(), robotsTxt()],
 })

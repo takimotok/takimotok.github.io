@@ -20,7 +20,11 @@ const resumes = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: 'src/content/resumes' }),
   schema: z.object({
     name: z.string(),
+    kana: z.string().optional(),
     shortBio: z.string(),
+    birthDate: z.date().optional(),
+    address: z.string().optional(),
+    lastEducation: z.string().optional(),
     occupation: z.string().optional(),
     company: z.string().optional(),
     site: z.string().url().optional(),
