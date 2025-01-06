@@ -1,0 +1,31 @@
+---
+import Link from '@/components/Link.astro'
+import { languages } from '@/i18n/ui'
+
+interface Props {
+  currentLang: keyof typeof languages
+}
+
+const { currentLang } = Astro.props
+const langs = languages
+---
+
+<div class="">
+  <div class="flex items-center gap-2 rounded-lg bg-white/90 px-3 py-2 shadow-lg backdrop-blur-sm dark:bg-gray-800/90">
+    {
+      Object.entries(langs).map(([code, label]) => (
+        <Link
+          href={code === 'en' ? '/resume' : `/${code}/resume`}
+          class:list={[
+            'rounded-md px-3 py-1 text-sm transition-colors',
+            currentLang === code
+              ? 'bg-slate-600 text-white'
+              : 'text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700',
+          ]}
+        >
+          {label}
+        </Link>
+      ))
+    }
+  </div>
+</div>

@@ -10,7 +10,7 @@ const { content } = Astro.props
 const { name, kana, occupation, company, shortBio, birthDate, lastEducation } = content
 ---
 
-<Layout title={`${name}の履歴書`}>
+<Layout title={`${name}の履歴書`} description={shortBio}>
   <div class="prose max-w-none dark:prose-invert prose-h3:text-lg sm:prose-h3:text-xl">
     <slot />
   </div>
