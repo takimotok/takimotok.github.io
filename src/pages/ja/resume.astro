@@ -1,0 +1,18 @@
+---
+import { getCollection, getEntry, render } from 'astro:content'
+import ResumeLayout from '@/layouts/ResumeLayout.astro'
+
+const jaResumes = await getCollection('resumes', ({ id }) => {
+  return id.startsWith('ja')
+})
+const [jaResume] = jaResumes
+if (!jaResume) {
+  throw new Error('Japanese resume not found')
+}
+
+const { Content } = await render(jaResume)
+---
+
+<ResumeLayout content={jaResume.data}>
+  <Content />
+</ResumeLayout>

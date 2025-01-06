@@ -18,5 +18,6 @@ export const SITE_METADATA: SiteMetadata = {
  */
 export const NAVIGATION: NavItem[] = [
   { href: '/', title: 'Home' },
+  { href: '/about', title: 'About' },
   { href: '/resume', title: 'Resume' },
 ] as const

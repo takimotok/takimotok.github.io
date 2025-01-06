@@ -1,0 +1,15 @@
+---
+import { getEntry, render } from 'astro:content'
+import ResumeLayout from '@/layouts/ResumeLayout.astro'
+
+const resume = await getEntry('resumes', 'default')
+if (!resume) {
+  throw new Error('Resume not found')
+}
+
+const { Content } = await render(resume)
+---
+
+<ResumeLayout content={resume.data}>
+  <Content />
+</ResumeLayout>

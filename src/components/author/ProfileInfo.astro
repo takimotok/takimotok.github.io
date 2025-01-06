@@ -1,0 +1,15 @@
+---
+interface Props {
+  name: string
+  occupation?: string
+  company?: string
+}
+
+const { name, occupation, company } = Astro.props
+---
+
+<h2 class="pb-2 pt-4 text-2xl font-bold leading-8 tracking-tight text-gray-500">
+  {name}
+</h2>
+<div class="text-gray-500 dark:text-gray-400">{occupation}</div>
+<div class="text-gray-500 dark:text-gray-400">{company}</div>
