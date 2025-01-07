@@ -90,7 +90,7 @@ $ cd takimotok.github.io.git
 
 $ docker compose down -v
 
-$ rm -rf node_modules .yarn
+$ rm -rf node_modules .yarn .cache
 
 $ yarn install
 
@@ -106,11 +106,12 @@ $ docker compose exec app /bin/bash yarn dev
 
 For local dev. env., we can run the commands below from a terminal:
 
-| Command                    | Action                                           |
-| :------------------------- | :----------------------------------------------- |
-| `yarn install`             | Installs dependencies                            |
-| `yarn run dev`             | Starts local dev server at `localhost:4321`      |
-| `yarn run build`           | Build your production site to `./dist/`          |
-| `yarn run preview`         | Preview your build locally, before deploying     |
-| `yarn run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `yarn run astro -- --help` | Get help using the Astro CLI                     |
+| Command                     | Action                                           |
+| :-------------------------  | :----------------------------------------------- |
+| `yarn install`              | Installs dependencies                            |
+| `yarn run dev`              | Starts local dev server at `localhost:4321`      |
+| `yarn run build`            | Build your production site to `./dist/`          |
+| `yarn run preview`          | Preview your build locally, before deploying     |
+| `yarn run astro ...`        | Run CLI commands like `astro add`, `astro check` |
+| `yarn run astro -- --help`  | Get help using the Astro CLI                     |
+| `yarn md2pdf ./foo/bar.pdf` | Render `.md` to `.pdf` by `md-to-pdf`            |
