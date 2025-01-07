@@ -1,0 +1,17 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import Layout from './Layout.astro'
+
+interface Props {
+  content: CollectionEntry<'resumes'>['data']
+}
+
+const { content } = Astro.props
+const { name, kana, occupation, company, shortBio, birthDate, lastEducation } = content
+---
+
+<Layout title={`${name}の履歴書`} description={shortBio}>
+  <div class="prose max-w-none dark:prose-invert prose-h3:text-lg sm:prose-h3:text-xl">
+    <slot />
+  </div>
+</Layout>

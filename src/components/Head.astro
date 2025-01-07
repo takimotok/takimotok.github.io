@@ -7,12 +7,11 @@ import { getImage } from 'astro:assets'
 import { getEntry } from 'astro:content'
 import Favicon from '@/assets/favicon.svg'
 import OgImage from '@/assets/og-image.png'
-import { getLangFromUrl } from '@/i18n/utils'
 import { SEO } from 'astro-seo'
 
 interface Props {
   title: string
-  description: string
+  description?: string
   robots?: string // default to SITE_METADATA.robots
   titleTemplate?: string
 }
@@ -29,11 +28,9 @@ const openGraphImage = await getImage({
 // The default author is the site creator
 const creator = await getEntry('authors', 'default')
 const twitterCreator = creator?.data.twitter
-
-const lang = getLangFromUrl(Astro.url)
 ---
 
-<head lang={lang}>
+<head>
   <SEO
     title={title}
     {titleTemplate}

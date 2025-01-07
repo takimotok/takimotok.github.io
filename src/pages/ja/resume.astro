@@ -1,6 +1,6 @@
 ---
-import { getCollection, getEntry, render } from 'astro:content'
-import ResumeLayout from '@/layouts/ResumeLayout.astro'
+import { getCollection, render } from 'astro:content'
+import JapaneseResumeLayout from '@/layouts/JapaneseResumeLayout.astro'
 
 const jaResumes = await getCollection('resumes', ({ id }) => {
   return id.startsWith('ja')
@@ -13,6 +13,6 @@ if (!jaResume) {
 const { Content } = await render(jaResume)
 ---
 
-<ResumeLayout content={jaResume.data}>
+<JapaneseResumeLayout content={jaResume.data}>
   <Content />
-</ResumeLayout>
+</JapaneseResumeLayout>

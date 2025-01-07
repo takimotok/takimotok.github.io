@@ -2,22 +2,18 @@
 import Footer from '@/components/Footer.astro'
 import Head from '@/components/Head.astro'
 import Header from '@/components/Header/index.astro'
-
+import LanguagePicker from '@/components/LanguagePicker.astro'
 import { getLangFromUrl } from '@/i18n/utils'
 
 type Props = {
   title: string
-  description: string
+  description?: string
   titleTemplate?: string
   robots?: string
-  article?: {
-    publishedTime: Date
-    modifiedTime?: Date
-    authors: string[]
-    authorTwitter?: string
-    tags: string[]
-  }
 }
+
+const currentPath = Astro.url.pathname
+const isResumePage = currentPath === '/resume' || currentPath === '/ja/resume'
 const lang = getLangFromUrl(Astro.url)
 ---
 
@@ -28,6 +24,7 @@ const lang = getLangFromUrl(Astro.url)
   <body>
     <div class="container mx-auto">
       <Header />
+      {isResumePage && <LanguagePicker currentLang={lang} />}
       <main>
         <slot />
       </main>
