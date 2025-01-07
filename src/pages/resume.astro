@@ -1,7 +1,5 @@
 ---
 import { getEntry, render } from 'astro:content'
-import LanguagePicker from '@/components/LanguagePicker.astro'
-import { getLangFromUrl } from '@/i18n/utils'
 import ResumeLayout from '@/layouts/ResumeLayout.astro'
 
 const resume = await getEntry('resumes', 'default')
@@ -10,10 +8,8 @@ if (!resume) {
 }
 
 const { Content } = await render(resume)
-const lang = getLangFromUrl(Astro.url)
 ---
 
-<LanguagePicker currentLang={lang} />
 <ResumeLayout content={resume.data}>
   <Content />
 </ResumeLayout>

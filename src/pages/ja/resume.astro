@@ -1,7 +1,5 @@
 ---
 import { getCollection, render } from 'astro:content'
-import LanguagePicker from '@/components/LanguagePicker.astro'
-import { getLangFromUrl } from '@/i18n/utils'
 import JapaneseResumeLayout from '@/layouts/JapaneseResumeLayout.astro'
 
 const jaResumes = await getCollection('resumes', ({ id }) => {
@@ -13,10 +11,8 @@ if (!jaResume) {
 }
 
 const { Content } = await render(jaResume)
-const lang = getLangFromUrl(Astro.url)
 ---
 
-<LanguagePicker currentLang={lang} />
 <JapaneseResumeLayout content={jaResume.data}>
   <Content />
 </JapaneseResumeLayout>
