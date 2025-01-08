@@ -114,4 +114,4 @@ For local dev. env., we can run the commands below from a terminal:
 | `yarn run preview`          | Preview your build locally, before deploying     |
 | `yarn run astro ...`        | Run CLI commands like `astro add`, `astro check` |
 | `yarn run astro -- --help`  | Get help using the Astro CLI                     |
-| `yarn md2pdf ./foo/bar.pdf` | Render `.md` to `.pdf` by `md-to-pdf`            |
+| `yarn md2pdf ./foo/bar.mdx` | Render `.md` to `.pdf` by `md-to-pdf`            |
