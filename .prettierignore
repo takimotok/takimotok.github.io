@@ -7,5 +7,9 @@
 package*.json
 !package.json
 
+*.md*
+
+*.json*
+
 yarn*.lock
 

@@ -7,6 +7,7 @@
     "dev": "astro dev --host 0.0.0.0",
     "check": "biome check ./src",
     "build": "astro check && yarn check && astro build",
+    "build:pdf": "md2pdf ./src/content/resumes/ja/index.mdx --config-file ./src/config/md-to-pdf/index.json",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -31,6 +32,7 @@
     "@biomejs/biome": "1.9.4",
     "@tailwindcss/forms": "0.5.9",
     "@tailwindcss/typography": "0.5.15",
+    "md-to-pdf": "5.2.4",
     "prettier": "3.4.1",
     "prettier-plugin-astro": "0.14.1",
     "prettier-plugin-tailwindcss": "0.6.9"

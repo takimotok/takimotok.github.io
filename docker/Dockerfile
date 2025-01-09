@@ -40,7 +40,7 @@ ENV NODE_ENV=${NODE_ENV:-production}
 RUN corepack disable && corepack enable
 
 # copy package files
-COPY package*.json yarn*.lock .yarnrc.yml ./
+COPY package*.json yarn*.lock .yarnrc.yml .puppeteerrc.cjs ./
 
 # set yarn v4.x and install dependencies
 #
@@ -97,6 +97,39 @@ RUN apt-get update && \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# For md-to-pdf
+# Install Chrome dependencies and Japanese fonts
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    ca-certificates \
+    fonts-ipafont-gothic \
+    fonts-ipafont-mincho \
+    libasound2t64 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libcairo2 \
+    libcups2 \
+    libdbus-1-3 \
+    libexpat1 \
+    libfontconfig1 \
+    libgbm1 \
+    libglib2.0-0 \
+    libnspr4 \
+    libnss3 \
+    libpango-1.0-0 \
+    libx11-6 \
+    libxkbcommon-x11-dev \
+    libxcomposite1 \
+    libxdamage1 \
+    libxext6 \
+    libxfixes3 \
+    libxrandr2 \
+    libxss1 \
+    wget \
+    xdg-utils \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 # setup user
 #
 # - create node user and group
@@ -119,6 +152,7 @@ USER node
 # copy node_modules from deps stage
 COPY --from=deps --chown=node:node ${WORK_DIR}/node_modules ${WORK_DIR}/node_modules
 COPY --from=deps --chown=node:node ${WORK_DIR}/.yarn ${WORK_DIR}/.yarn
+COPY --from=deps --chown=node:node ${WORK_DIR}/.cache ${WORK_DIR}/.cache
 
 # copy project files
 COPY --chown=node:node . .

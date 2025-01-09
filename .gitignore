@@ -7,6 +7,7 @@ dist/
 # dependencies
 **/node_modules/
 .yarn
+.cache
 
 # logs
 npm-debug.log*
@@ -20,6 +21,9 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# md-to-pdf
+**/*.pdf
 
 # jetbrains setting folder
 .idea/

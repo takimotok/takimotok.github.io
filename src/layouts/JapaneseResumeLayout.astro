@@ -7,11 +7,19 @@ interface Props {
 }
 
 const { content } = Astro.props
-const { name, kana, occupation, company, shortBio, birthDate, lastEducation } = content
+const { name, shortBio } = content
 ---
 
 <Layout title={`${name}の履歴書`} description={shortBio}>
-  <div class="prose max-w-none dark:prose-invert prose-h3:text-lg sm:prose-h3:text-xl">
+  <div
+    class="text-md prose max-w-none text-gray-500 dark:prose-invert prose-headings:text-gray-600 prose-h3:text-lg sm:prose-h3:text-xl"
+  >
     <slot />
   </div>
 </Layout>
+
+<style>
+  .markdown-body.date {
+    text-align: right;
+  }
+</style>
