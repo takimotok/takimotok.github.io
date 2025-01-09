@@ -57,3 +57,7 @@ hr {
 .page-break {
   page-break-after: always;
 }
+
+.markdown-body.date {
+  text-align: right;
+}
