@@ -13,6 +13,7 @@ import robotsTxt from 'astro-robots-txt'
 export default defineConfig({
   prefetch: true,
   site: SITE_METADATA.url,
+  trailingSlash: 'never',
   i18n: {
     locales: ['en', 'ja'],
     defaultLocale: 'en',
