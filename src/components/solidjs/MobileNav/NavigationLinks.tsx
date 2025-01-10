@@ -8,7 +8,10 @@ export const NavigationLinks: Component = () => {
       <For each={NAVIGATION}>
         {({ href, title }) => (
           <div class='px-12 py-4'>
-            <Link href={href} class='text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100'>
+            <Link
+              href={href}
+              class='text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100'
+            >
               {title}
             </Link>
           </div>

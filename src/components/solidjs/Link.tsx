@@ -10,14 +10,22 @@ export default function Link(props: LinkProps) {
 
   if (isInternalLink || isAnchorLink) {
     return (
-      <a href={props.href} class={props.class}>
+      <a
+        href={props.href}
+        class={props.class}
+      >
         {props.children}
       </a>
     )
   }
 
   return (
-    <a href={props.href} class={props.class} target='_blank' rel='noopener noreferrer'>
+    <a
+      href={props.href}
+      class={props.class}
+      target='_blank'
+      rel='noopener noreferrer'
+    >
       {props.children}
     </a>
   )
