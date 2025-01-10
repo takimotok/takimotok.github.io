@@ -1,14 +1,14 @@
 ---
 import { Image } from 'astro:assets'
+import PrflImg from '@/assets/prfl.jpg'
 
 interface Props {
-  src: string
   alt: string
   width?: number
   height?: number
 }
 
-const { src, alt, width = 192, height = 192 } = Astro.props
+const { alt, width = 192, height = 192 } = Astro.props
 ---
 
-<Image src={src} alt={alt} width={width} height={height} class="h-48 w-48 rounded-full drop-shadow-md" />
+<Image src={PrflImg} alt={alt} width={width} height={height} class="h-48 w-48 rounded-full drop-shadow-md" />

@@ -17,7 +17,10 @@ const MobileNav: Component = () => {
         className='sm:hidden'
         onClick={() => setIsMenuOpen(true)}
       />
-      <MenuOverlay isOpen={isMenuOpen()} onClose={() => setIsMenuOpen(false)} />
+      <MenuOverlay
+        isOpen={isMenuOpen()}
+        onClose={() => setIsMenuOpen(false)}
+      />
     </div>
   )
 }

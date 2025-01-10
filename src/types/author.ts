@@ -1,4 +1,4 @@
-// @TODO: src/content.config.ts で定義してあるものを流用できないか?
+// @TODO: can I use almost the same definitions in src/content.config.ts ?
 export interface Author {
   name: string
   avator: ImageMetadata
