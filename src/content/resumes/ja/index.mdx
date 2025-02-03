@@ -13,7 +13,7 @@ site: https://kengotakimoto.com/
 # 職務経歴書
 
 <div class="markdown-body date">
-  <span>2025-01-16</span>
+  <span>2025-02-03</span>
 </div>
 
 ## プロフィール
@@ -42,7 +42,6 @@ site: https://kengotakimoto.com/
 
 ### 主な実績
 
-- 個人事業から法人化を実現
 - Python によるデータ処理システム最適化 (ETL) により処理時間を 80% 削減
 - オフショア開発チームとの協業による開発コスト削減
 - 複数プロジェクトで技術スタックのモダン化を主導
@@ -71,12 +70,17 @@ site: https://kengotakimoto.com/
 
 ### 興味 / 関心
 
-- 従来と比べてより良い技術, 制度に積極的にチャレンジできる環境が好き
-- 最近は React Native に興味あり
+- 新しい技術や制度に積極的にチャレンジできる環境が好き
+- ドッグフーディングを通して, `本当にユーザのためになるか?` を機能要件から一緒に考えていけるチームだと嬉しい
+- アジャイルな開発スタイルが好き
+  - 少人数チーム
+  - 小さく, 素早くリリース
+  - フィードバック & 改善 のサイクルを回す
+- 扱う技術や領域を問わず, 社内外勉強会やイベントへの参加者が多いと嬉しい
 
 ### 就業条件
 
-- 勤務形態: フルリモートワーク
+- 勤務形態: フルリモートワーク (月数回程度の出社は可)
 
 ### 言語
 
@@ -92,38 +96,64 @@ site: https://kengotakimoto.com/
 - 中学校教諭専修免許状 (理科)  (2011年)
 - 小学校教諭一種免許状 (2009年)
 
+### 諸活動
+
+- Blog: [Kengo's Blog](https://www.kengotakimoto.com/)
+  - Next.js, SCSS, Vercel
+  - [GitHub Repository](https://github.com/takimotok/blog-infrastructure)
+- Resume: [Kengo's Resume](https://takimotok.github.io/)
+  - React, Astro, TailwindCSS, GitHub Pages
+  - [GitHub Repository](https://github.com/takimotok/takimotok.github.io)
+- dotfiles: [takimotok/dotfiles: dotfiles](https://github.com/takimotok/dotfiles)
+
 <div class="page-break"></div>
 
 ## 職務経歴
 
 ### 2021-05 - 2024-09: <a href="https://www.wellmira.jp/" target="_blank" rel="noopener noreferrer">株式会社Wellmira</a>
 
-健康アドバイスアプリ `カロママプラス` の開発, 運用およびブリッジSE兼マネジメント業務.  
+健康アドバイスアプリ `カロママプラス` の開発, 運用及びブリッジSE兼マネジメント業務.  
 AWS DMS によるデータ移行時間短縮化を図り, Python による ETL 処理をスクラッチ開発.  
 これにより, データ移行時間を4時間から20分への短縮可を実現.  
 さらに, AWS Athena クエリ最適化及びパーティション化による, 管理画面高速化を実施.  
 その他, 国内開発者4名のチームにて, 開発環境の整備やコードレビューを主導.
 
 - プロジェクト規模:
-  - ベトナムオフショア: ウォーターフォール及びアジャイル開発
   - メンバ数平均: 2 - 4 人
+  - ベトナムオフショア: アジャイル開発, スパイラル開発
+  - 日本開発チーム: アジャイル開発
 - 使用技術:
   - PHP, Laravel, jQuery, TypeScript, Java, Kotolin, Swift, Python, MySQL, Docker, AWS
 - 役割:
   - マネジメント, 機能検討, 設計, コーディング, レビュー
 - 担当プロジェクト:
-  - 開発生産性向上への取り組み
-    - Docker, Docker compose による開発環境再構築
-    - GitHub Actions による CI 導入 (Linter, Formatter)
   - `カロママプラス` 開発, 保守
-    - JS, PHP, Laravel を用いたヘルスケアアプリケーションの Web 開発
-    - オフショア開発におけるブリッジエンジニアとして共同作業
-    - Python による ETL 処理スクラッチ開発
-  - 受託案件及びオフショア開発リード
+    - Python による ETL 処理技術選定及びスクラッチ開発
+      - ETL 処理をイチからスクラッチ開発. DB から S3 へのデータ転送時間短縮化を実現
+      - AWS Glue にて ETL 実験を行った結果, コストが膨大になる事が判明. parquet file を扱いやすい Python による ETL 処理スクラッチ開発を決断
+      - S3 との通信を asyncio にて非同期化. その際, 並列数や chunk 数などを環境変数化
+      - S3 object の重複データを避けるために次の対策を行った
+        - 更新データが含まれる object を S3 から DL , edit, upload
+        - 後述の partitiono path に合わせて parquet file 生成
+      - pyarrow による column データ型推測をコントロールするため, table column 毎にデータ型を指定可能な設計にした
+      - その他, linter 及び formatter 導入, logger 実装, slack 通知実装など
+    - AWS Athena 及び Laravel による管理画面グラフ表示高速化
+      - PHP から Athena へ送信する query 最適化
+      - S3 object 設置 path を `YYYY/mm/dd` のように partition 化
+  - 受託案件内製化及び開発リード
+    - MS Windows Server, MS SQL Server から Linux 系 OS 環境への移行及び local 開発環境構築整備, コードレビュー等
+      - README 作成, バックエンド及びフロントエンドへの linter, formatter, PHPStan, PHPUnit 導入
+      - Docker, Docker Compose による local 開発環境構築
+      - GitHub Actions による CI 設定
+      - GitHub PR コメント等を slack へ通知
+  - オフショア開発におけるブリッジエンジニア業務
     - OpenID Connect システム導入, 技術検証及びリード
-    - AWS 上で, MS Windows Server, MS SQL Server から Linux 系 OS 環境へ移行および local 開発環境構築整備, コードレビュー等
   - 社内課題解決への取り組み
-    - GAS, TypeScript, Backlog API による, Microsoft Teams 及び Slack への通知システム設計, 実装
+    - Backlog 課題を Microsoft Teams 及び Slack へ通知するシステムを設計, 実装
+      - 使用技術: GAS, TypeScript, Backlog API, Slack Workflows, Teams Workflows
+      - メンバが GitHub で source code を管理できるように clasp で local 開発環境を構築
+      - トリガ時刻を細かく指定可能にするため, GUI ではなく source code でトリガを実装
+      - 環境変数は `Script Properties` で管理
     - 開発メンバメンター及び技術支援
 
 <div class="page-break"></div>
@@ -133,8 +163,8 @@ AWS DMS によるデータ移行時間短縮化を図り, Python による ETL �
 EC ページ制作支援ツール `Biiino for 楽天市場` 及び `SUMAOU! for 楽天市場` の開発, 運用業務.
 
 - プロジェクト規模:
-  - ウォーターフォール及びアジャイル開発
   - メンバ数平均: 3 - 4 人
+  - アジャイル開発, スパイラル開発
 - 使用技術:
   - PHP, Laravel, Vue.js, MySQL, Vagrant
 - 役割:
@@ -160,14 +190,15 @@ EC ページ制作支援ツール `Biiino for 楽天市場` 及び `SUMAOU! for 
 ハンドメイドマーケットプレイス <a href="https://www.creema.jp/" target="_blank" rel="noopener noreferrer">Creema</a> の開発, 運用業務.
 
 - プロジェクト規模:
-  - ウォーターフォール
   - メンバ数平均: 6 - 10 人
+  - アジャイル開発, スパイラル開発
 - 使用技術:
   - PHP, Laravel, jQuery, MySQL, Docker, AWS
 - 役割:
   - 機能検討, 設計, コーディング, レビュー
 - 担当プロジェクト：
   - `Creema` 開発, 保守
+    - AWS SQS によるメッセージ送信機能実装. 送信時間短縮化に貢献.
     - SEO 最適化: 調査, 実装
     - 商品ページ表示速度改善及びリファクタ
     - その他細かいバグ改修及びアプリテスト
@@ -177,16 +208,15 @@ EC ページ制作支援ツール `Biiino for 楽天市場` 及び `SUMAOU! for 
 英会話コーチングサービス <a href="https://smart-method.rarejob.com/" target="_blank" rel="noopener noreferrer">スマートメソッド</a> 新規立ち上げ.
 
 - プロジェクト規模:
-  - ウォーターフォール
   - メンバ数平均: 6 - 10 人
+  - アジャイル開発
 - 使用技術:
   - PHP, Laravel, jQuery, Vue.js, MySQL, Docker, AWS
 - 役割:
   - 機能検討, 設計, コーディング, レビュー
 - 担当プロジェクト：
   - `スマートメソッド` 新規開発
-    - 人事担当者サイト引き継ぎ
-    - API 設計, 実装
+    - 仕様検討, API 設計及び実装. 一部デザイナと協力.
   - 社内課題解決への取り組み
     - 英会話テスト
 
@@ -195,8 +225,8 @@ EC ページ制作支援ツール `Biiino for 楽天市場` 及び `SUMAOU! for 
 賃貸住宅物件情報サイト <a href="https://door.ac/" target="_blank" rel="noopener noreferrer">DOOR 賃貸</a> 開発, 運用.
 
 - プロジェクト規模:
-  - アジャイル開発
   - メンバ数平均: 6 - 10 人
+  - アジャイル開発
 - 使用技術:
   - PHP, Symfony, Ruby on Rails, Shell Script, MySQL, Docker, AWS
 - 役割:
@@ -218,8 +248,8 @@ EC ページ制作支援ツール `Biiino for 楽天市場` 及び `SUMAOU! for 
 EC 向け BI ツール <a href="https://faro-report.com/" target="_blank" rel="noopener noreferrer">FARO REPORT</a> 開発, 運用.
 
 - プロジェクト規模:
-  - ウォーターフォール
   - メンバ数平均: 2 - 4 人
+  - アジャイル開発, スパイラル開発
 - 使用技術:
   - PHP, CakePHP, Laravel, jQuery, R, MySQL, Vagrant, AWS
 - 役割:
@@ -280,15 +310,3 @@ VBA による商品選定自動化システムを構築し, 作業効率化を�
     - 評価スケジュール作成及び管理
     - 開発製品全体性能評価
     - 仕様書作成
-
-## 諸活動
-
-### アウトプット
-
-- Blog: [Kengo's Blog](https://www.kengotakimoto.com/)
-  - Next.js, SCSS, Vercel
-  - [GitHub Repository](https://github.com/takimotok/blog-infrastructure)
-- Resume: [Kengo's Resume](https://takimotok.github.io/)
-  - React, Astro, TailwindCSS, GitHub Pages
-  - [GitHub Repository](https://github.com/takimotok/takimotok.github.io)
-- dotfiles: [takimotok/dotfiles: dotfiles](https://github.com/takimotok/dotfiles)
