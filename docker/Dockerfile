@@ -4,7 +4,7 @@
 # cf.) BestPractices.md
 # https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#global-npm-dependencies
 # -----
-FROM node:22-bookworm-slim AS base
+FROM node:22.20.0-bookworm-slim AS base
 
 ENV HOME=/home/node
 WORKDIR ${HOME}
@@ -13,7 +13,9 @@ WORKDIR ${HOME}
 ENV NPM_CONFIG_PREFIX=${HOME}/.npm-global
 ENV PATH=${HOME}/.npm-global/bin:$PATH
 
-RUN npm i --unsafe-perm --allow-root -g npm@latest
+# pinned to the newest npm major (11.x) still compatible with the
+# pinned Node version above
+RUN npm i --unsafe-perm --allow-root -g npm@11.19.1
 
 # -----
 # Stage 2: Dependencies stage
@@ -24,9 +26,14 @@ RUN npm i --unsafe-perm --allow-root -g npm@latest
 FROM ubuntu:noble-20240605 AS deps
 
 # copy Node.js from base image
+#
+# `/opt` is required too: `/usr/local/bin/yarn` is a symlink into
+# `/opt/yarn-v*/`, so omitting it leaves a broken symlink and breaks
+# `corepack enable` (ENOENT on realpath).
 COPY --from=base /usr/local/include/ /usr/local/include/
 COPY --from=base /usr/local/lib/ /usr/local/lib/
 COPY --from=base /usr/local/bin/ /usr/local/bin/
+COPY --from=base /opt/ /opt/
 
 # ARGs to receive build-time variables
 ARG WORK_DIR
@@ -58,10 +65,11 @@ RUN yarn set version stable \
 # -----
 FROM ubuntu:noble-20240605 AS development
 
-# copy Node.js from base image
+# copy Node.js from base image (see `deps` stage for why `/opt` is needed)
 COPY --from=base /usr/local/include/ /usr/local/include/
 COPY --from=base /usr/local/lib/ /usr/local/lib/
 COPY --from=base /usr/local/bin/ /usr/local/bin/
+COPY --from=base /opt/ /opt/
 
 # ARGs to receive build-time variables
 #
@@ -89,46 +97,46 @@ ENV TZ=Asia/Tokyo
 #   - tini: avoid running node.js process as PID 1
 #   - vim: for editing inside container
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    curl \
-    git \
-    tini \
-    vim \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+  apt-get install -y --no-install-recommends \
+  curl \
+  git \
+  tini \
+  vim \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 # For md-to-pdf
 # Install Chrome dependencies and Japanese fonts
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    ca-certificates \
-    fonts-ipafont-gothic \
-    fonts-ipafont-mincho \
-    libasound2t64 \
-    libatk-bridge2.0-0 \
-    libatk1.0-0 \
-    libcairo2 \
-    libcups2 \
-    libdbus-1-3 \
-    libexpat1 \
-    libfontconfig1 \
-    libgbm1 \
-    libglib2.0-0 \
-    libnspr4 \
-    libnss3 \
-    libpango-1.0-0 \
-    libx11-6 \
-    libxkbcommon-x11-dev \
-    libxcomposite1 \
-    libxdamage1 \
-    libxext6 \
-    libxfixes3 \
-    libxrandr2 \
-    libxss1 \
-    wget \
-    xdg-utils \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+  apt-get install -y --no-install-recommends \
+  ca-certificates \
+  fonts-ipafont-gothic \
+  fonts-ipafont-mincho \
+  libasound2t64 \
+  libatk-bridge2.0-0 \
+  libatk1.0-0 \
+  libcairo2 \
+  libcups2 \
+  libdbus-1-3 \
+  libexpat1 \
+  libfontconfig1 \
+  libgbm1 \
+  libglib2.0-0 \
+  libnspr4 \
+  libnss3 \
+  libpango-1.0-0 \
+  libx11-6 \
+  libxkbcommon-x11-dev \
+  libxcomposite1 \
+  libxdamage1 \
+  libxext6 \
+  libxfixes3 \
+  libxrandr2 \
+  libxss1 \
+  wget \
+  xdg-utils \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 # setup user
 #
@@ -136,9 +144,9 @@ RUN apt-get update && \
 # - create app dir
 # - switch to `node` user
 RUN groupadd --gid 2000 node \
-    && useradd --uid 2000 --gid node --shell /bin/bash --create-home node \
-    && mkdir -p ${WORK_DIR} \
-    && chown -R node:node ${WORK_DIR}
+  && useradd --uid 2000 --gid node --shell /bin/bash --create-home node \
+  && mkdir -p ${WORK_DIR} \
+  && chown -R node:node ${WORK_DIR}
 
 # - enable corepack for yarn v4.x
 # - set yarn v4.x
