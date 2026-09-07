@@ -13,20 +13,20 @@ site: https://kengotakimoto.com/
 # 職務経歴書
 
 <div class="markdown-body date">
-  <span>2025-02-03</span>
+  <span>2026-09-07</span>
 </div>
 
 ## プロフィール
 
-|          |                                                       |
-|----------|-------------------------------------------------------|
-| 氏名     | 滝本 顕悟                                             |
-| シメイ   | タキモト ケンゴ                                       |
-| 居住地   | 東京都                                                |
-| 生年月日 | 1985-12-15                                            |
-| 最終学歴 | 2011年3月 東北大学大学院医工学研究科 博士前期課程修了 |
-| ブログ   | [Kengo's Blog](https://www.kengotakimoto.com/)        |
-| レジュメ | [Kengo's Resume](https://takimotok.github.io/)        |
+|            |                                                         |
+| ---------- | ------------------------------------------------------- |
+| 氏名       | 滝本 顕悟                                               |
+| シメイ     | タキモト ケンゴ                                         |
+| 居住地     | 東京都                                                  |
+| 生年月日   | 1985-12-15                                              |
+| 最終学歴   | 2011年3月 東北大学大学院医工学研究科 博士前期課程修了   |
+| ブログ     | [Kengo's Blog](https://www.kengotakimoto.com/)          |
+| レジュメ   | [Kengo's Resume](https://takimotok.github.io/)          |
 
 ## 基本情報
 
@@ -43,6 +43,8 @@ site: https://kengotakimoto.com/
 ### 主な実績
 
 - Python によるデータ処理システム最適化 (ETL) により処理時間を 80% 削減
+- React Native アプリへの Sentry Error Boundary 導入によるエラー監視基盤整備
+- SEO sitemap.xml 改善によるクロール/インデックス最適化
 - オフショア開発チームとの協業による開発コスト削減
 - 複数プロジェクトで技術スタックのモダン化を主導
 - その他: PdM, PjM, 技術指導等
@@ -51,12 +53,12 @@ site: https://kengotakimoto.com/
 
 - プログラミング言語: PHP, JavaScript, Python, Lua
 - フレームワーク:
-  - フロントエンド: TypeScript, Astro, React, Next.js, Vue.js
+  - フロントエンド: TypeScript, Astro, React, React Native, Next.js, Vue.js
   - バックエンド: Laravel, Python
 - インフラ:
   - DB: MySQL, PostgresSQL, Redis
   - AWS: Athena, EC2, ECS, S3
-  - Others: Docker, Docker Compose
+  - Others: Docker, Docker Compose, Sentry, LocalStack
 
 <div class="page-break"></div>
 
@@ -67,6 +69,28 @@ site: https://kengotakimoto.com/
 - TypeScript, React, Vue.js, Astro によるフロントエンド開発及び設計
 - バックエンド及びフロントエンドの開発基盤整備
 - 未経験技術へのキャッチアップ及びアウトプット
+
+### AI 活用
+
+- GitHub Copilot の model/操作方法の社内共有 (2025-04)
+  - 課題: 各社員が使用する AI ツールの選定
+  - 背景: 既存 Editor (VSCode) から Cursor への乗り換え検討時期. 社内で AI 性能比較のデモが行われたが, 比較条件が揃っておらず意思決定材料として不適切だった
+  - 解決策: 参画前から GitHub Copilot を使用していた経験を活かし, 選択肢として残すよう提案. model の種類や GitHub UI の操作方法を共有
+    - Advantage: 単一プランで複数 model を利用可能な点, 当初から Copilot CLI が存在した点
+  - 結果: 2026-06 の従量課金への制度変更に伴い, Claude Code へ全面移行
+  - 学び: 定量的な改善数値ではないが, 定額で各種 model を試せる環境を提案できた点は意義があった
+- CodeRabbit CLI を Claude Code から操作する方法の共有
+  - 課題: GitHub 連携済みの CodeRabbit によるレビューを, push 前に local で実行したい
+  - 背景: push 後に CodeRabbit の指摘修正を繰り返すことがストレスであるとの相談を受けた
+  - 解決策: Claude Code から `$ coderabbit review --agent` を実行し, 指摘が解消するまで自律的に修正を繰り返す prompt を共有し, CLI 経由でのレビュー自動修正フローを構築
+  - 結果: token 使用量がボトルネックとなり, 大規模な差分では実運用に制約があることが判明. 適用範囲(差分サイズ等)の見極めという, 次の改善課題を具体化できた
+  - 学び: 自律修正フローの有効性と, token コストとのトレードオフを実践を通じて把握できた
+- その他の AI 活用支援
+  - 既存コード実装把握, unit test 作成における活用
+  - MCP 連携方法の共有 (Figma, Google Calendar 等)
+  - `PLAN.md`, `STATUS.md` によるセッション間の仕様引き継ぎ方法の共有
+  - Claude Code による `git` コマンド実行を禁止し, 人によるコードレビューを徹底する運用
+  - Neovim から AI を操作する方法のデモ及び dotfiles 共有
 
 ### 興味 / 関心
 
@@ -109,6 +133,39 @@ site: https://kengotakimoto.com/
 <div class="page-break"></div>
 
 ## 職務経歴
+
+### 2025-03 - 現在: <a href="https://www.oz-vision.co.jp/" target="_blank" rel="noopener noreferrer">株式会社ozvision</a>
+
+`ひとつと株式会社` として, ポイントサイト `ハピタス` / `ハピタススマート` / `ハピウォーク` 領域におけるフロントエンド及びバックエンド開発, 技術調査及び品質改善業務を担当.  
+仕様が曖昧な領域に対し, 調査・論点整理・Q&A を通じて関係者と合意形成を図りながら, 設計から実装, テストまで一貫して推進.  
+React Native アプリへの Sentry 導入によるエラー監視基盤整備, SEO sitemap.xml 改善, 新規広告メニュー実装等を担当.
+
+- プロジェクト規模:
+  - メンバ数平均: 3 - 6 人
+  - アジャイル開発 / ウォーターフォール開発
+- 使用技術:
+  - PHP, TypeScript, React, React Native, MySQL, AWS, Sentry, Docker, LocalStack
+- 役割:
+  - 技術調査, 設計, コーディング, テスト設計及び実施, レビュー
+- 担当プロジェクト:
+  - AI 価格比較機能追加対応
+    - フロントエンド領域の技術調査, 設計, 製造, テストを担当
+    - Hapitas Smart 機能と AI 機能の ON/OFF 状態に応じた UI 状態管理を設計, 実装
+  - 新規広告メニュー「ポップアップ枠」対応
+    - SP/APP フロント実装, 単体テスト, デザイン更新対応
+    - デモ実施及びフィードバック反映, テスト項目作成及びテスト実施
+  - React Native アプリへの Sentry Error Boundary 導入
+    - Fallback Component, 再読み込み導線, Slack 通知, stg 環境での動作確認を整理
+    - アプリ障害時の検知及びユーザー向けフォールバック基盤を整備
+  - SEO 改善施策
+    - sitemap.xml 生成仕様及び sitemap index 形式への移行方針を整理
+    - Search Console API, robots.txt, クロールバジェットに関する技術調査及び社内外向け Q&A 作成
+    - クロール結果と sitemap 出力の差分分析による index 対象 URL の判断基準整理
+  - その他
+    - ハピウォーク WebView 登録導線改修(OBD 内サービス説明画面追加, 登録前 LP, スプラッシュ画面変更等)の調査, 実装及び検証
+    - app build 環境及び LocalStack バージョン/プラン整理等, local 開発環境の改善
+
+<div class="page-break"></div>
 
 ### 2021-05 - 2024-09: <a href="https://www.wellmira.jp/" target="_blank" rel="noopener noreferrer">株式会社Wellmira</a>
 
