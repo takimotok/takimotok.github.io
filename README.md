@@ -99,7 +99,7 @@ $ docker compose build --no-cache
 $ docker compose up -d
 
 # start local server
-$ docker compose exec app /bin/bash yarn dev
+$ docker compose exec app yarn dev
 ```
 
 ## 💻 Commands
@@ -114,4 +114,12 @@ For local dev. env., we can run the commands below from a terminal:
 | `yarn run preview`          | Preview your build locally, before deploying     |
 | `yarn run astro ...`        | Run CLI commands like `astro add`, `astro check` |
 | `yarn run astro -- --help`  | Get help using the Astro CLI                     |
-| `yarn md2pdf ./foo/bar.mdx` | Render `.md` to `.pdf` by `md-to-pdf`            |
+| `yarn run build:pdf`        | Render resume `.mdx` to `.pdf` by `md-to-pdf`    |
+
+Example:
+
+```sh
+docker compose exec app yarn build:pdf
+```
+
+The generated PDF is output next to the source file, at `./src/content/resumes/ja/index.pdf`.
