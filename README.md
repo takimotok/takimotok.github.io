@@ -99,7 +99,7 @@ $ docker compose build --no-cache
 $ docker compose up -d
 
 # start local server
-$ docker compose exec app /bin/bash yarn dev
+$ docker compose exec app yarn dev
 ```
 
 ## 💻 Commands
