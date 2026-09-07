@@ -1,6 +1,9 @@
 {
   "stylesheet": "./src/config/md-to-pdf/style.css",
   "body_class": "markdown-body",
+  "launch_options": {
+    "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+  },
   "pdf_options": {
     "format": "A4",
     "margin": "15mm 15mm",
